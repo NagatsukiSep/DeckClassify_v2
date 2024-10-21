@@ -2,17 +2,15 @@ import { useState } from "react";
 import { Code2Image } from "@/utils/Code2Image";
 import ImageModal from "@/components/ImageModal/ImageModal";
 
-export const DeckCard = (props: { deckCode: string, deckType: string,ace: string }) => {
+export const DeckCard = (props: { deckCode: string, deckType: string, ace: string }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
-    // setSelectedImage(imageUrl);
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    // setSelectedImage(null);
   };
 
   return (
@@ -38,10 +36,8 @@ export const DeckCard = (props: { deckCode: string, deckType: string,ace: string
           {props.deckCode}
         </a>
       </div>
-      {/* {props.ace} */}
-      {modalIsOpen && (
-        <ImageModal isOpen={modalIsOpen} onClose={closeModal} imageUrl={Code2Image(props.deckCode)} />
-      )}
+      <ImageModal isOpen={modalIsOpen} onClose={closeModal} imageUrl={Code2Image(props.deckCode)} />
+
     </div>
   );
 }

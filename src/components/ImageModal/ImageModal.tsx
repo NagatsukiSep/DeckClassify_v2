@@ -15,6 +15,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, imageUrl }) =>
       contentLabel="Image Modal"
       className="flex justify-center items-center"
       overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center"
+      ariaHideApp={false}
     >
       <div className="relative">
         <button onClick={onClose} className="absolute top-0 right-0 m-2 bg-white rounded-full w-8 h-8 flex items-center justify-center">

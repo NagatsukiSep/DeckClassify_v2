@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { DeckCard } from "@/components/DeckCard/DeckCard";
-import { BasicButton } from "@/components/Button/BasicButton";
+import { ClassifiedData } from '@/types/ClassifyData';
+import { DeckTypeName } from '@/utils/DeckTypeName';
+import { Button } from '@/components/ui/button';
 
-type dataType = {
-  id: number,
-  code: string,
-  deckType: string
-  ace: string
+interface deckGridProps {
+  data: ClassifiedData[];
 }
 
-interface Props {
-  data: dataType[];
-}
-
-export const DeckGrid: React.FC<Props> = ({ data }) => {
+export const DeckGrid: React.FC<deckGridProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9; // 1ページあたりの項目数を設定
 
@@ -33,19 +28,19 @@ export const DeckGrid: React.FC<Props> = ({ data }) => {
     <div className="w-full px-8 py-4">
       <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
         {currentItems.map((d) => (
-          <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} ace={d.ace} />
+          <DeckCard key={d.id} deckCode={d.code} deckType={DeckTypeName(d.main, d.sub)} ace={d.ace} />
         ))}
       </div>
       <div className="flex justify-center items-center mt-4">
-        <BasicButton onClick={prevPage} disabled={currentPage === 1}>
-          前のページ
-        </BasicButton>
+        <Button onClick={prevPage} disabled={currentPage === 1}>
+          Prev
+        </Button>
         <div className="mx-2">
           {currentPage} / {Math.ceil(data.length / itemsPerPage)}
         </div>
-        <BasicButton onClick={nextPage} disabled={currentPage === Math.ceil(data.length / itemsPerPage)}>
-          次のページ
-        </BasicButton>
+        <Button onClick={nextPage} disabled={currentPage === Math.ceil(data.length / itemsPerPage)}>
+          Next
+        </Button>
       </div>
     </div>
   );

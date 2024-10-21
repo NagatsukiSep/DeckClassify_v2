@@ -1,4 +1,14 @@
 export type ClassifiedData = {
-  deckType: string;
+  main: string;
+  sub?: string;
   ace: string;
+  id: number;
+  code: string;
+};
+
+export type FreqType = {
+  [deckType: string]: {
+    freq: number,
+    aceFreq: { [ace: string]: number }
+  }
 };

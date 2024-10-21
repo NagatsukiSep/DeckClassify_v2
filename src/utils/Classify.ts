@@ -1,11 +1,14 @@
-import { classifyDict } from "./ClassifyDict"
-import { Code2Dict } from "./Code2Dict";
+import { classifyDef } from "@/utils/ClassifyDict"
+import { Code2Dict } from "@/utils/Code2Dict";
 import { ClassifiedData } from "@/types/ClassifyData";
 
 export async function Classify(code: string) {
-  const classifiedData : ClassifiedData = {
-    deckType: "その他",
-    ace: "無し"
+  const classifiedData: ClassifiedData = {
+    main: "その他",
+    sub: undefined,
+    ace: "無し",
+    id: 0,
+    code: code
   }
   const deckList = await Code2Dict(code);
 
@@ -25,33 +28,37 @@ export async function Classify(code: string) {
     }
   }
 
-  for (const deckType in classifyDict) {
-    const condition = classifyDict[deckType];
-    let flag = true;
-    for (const cardName in condition) {
-      switch (condition[cardName].gl) {
-        case "g":
-          if (deckList[cardName] < condition[cardName].amount || deckList[cardName] === undefined) {
-            flag = false;
+  let possibleMain: string[] = [];
+
+  for (const main in classifyDef) {
+    if (deckList[main] >= 2) {
+      classifiedData.main = main;
+      if (classifyDef[main].sub.length === 0) {
+        return classifiedData;
+      }
+      else {
+        for (const sub of classifyDef[main].sub) {
+          if (deckList[sub] >= 2) {
+            classifiedData.main = main;
+            classifiedData.sub = sub;
+            return classifiedData;
           }
-          break;
-        case "l":
-          if (deckList[cardName] >= condition[cardName].amount && deckList[cardName] !== undefined) {
-            flag = false;
+          else if (sub.includes("かがやく") && deckList[sub] >= 1) {
+            classifiedData.main = main;
+            classifiedData.sub = sub;
+            return classifiedData;
           }
-          break;
-        default:
-          flag = false;
-          break;
+        }
+        possibleMain.push(main);
       }
     }
-    if (flag) {
-      classifiedData.deckType = deckType;
-      return classifiedData;
-    }
+  }
+  if (possibleMain.length === 1) {
+    classifiedData.main = possibleMain[0];
+    return classifiedData;
   }
   if (deckList && Object.keys(deckList).length === 0) {
-    classifiedData.deckType = "エラー";
+    classifiedData.main = "エラー";
     return classifiedData;
   }
   return classifiedData;
