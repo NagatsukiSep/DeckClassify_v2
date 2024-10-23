@@ -28,7 +28,7 @@ export async function Classify(code: string) {
     }
   }
 
-  let possibleMain: string[] = [];
+  const possibleMain: string[] = [];
 
   for (const main in classifyDef) {
     if (deckList[main] >= 2) {

@@ -43,7 +43,7 @@ export const DeckUploader: React.FC<FileUploaderProps> = ({ handleSubmit, handle
     }
   }, [])
 
-  const removeFile = (fileName: string) => {
+  const removeFile = () => {
     setFile(undefined)
     setIsSubmitting(false)
     if (inputRef.current) {
@@ -86,7 +86,7 @@ export const DeckUploader: React.FC<FileUploaderProps> = ({ handleSubmit, handle
               <span className="text-sm font-medium text-gray-900">{file.name}</span>
             </div>
             <div className="flex items-center space-x-4">
-              <button onClick={() => removeFile(file.name)} className="text-red-500 hover:text-red-700">
+              <button onClick={() => removeFile()} className="text-red-500 hover:text-red-700">
                 <X className="h-5 w-5" />
               </button>
             </div>
