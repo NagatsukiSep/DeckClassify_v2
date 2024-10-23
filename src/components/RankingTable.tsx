@@ -21,6 +21,12 @@ export const RankingTable: React.FC<RankingTableProps> = ({ freq, total }) => {
   const handleShowAce = () => {
     setShowAce(!showAce);
   };
+
+  const [showSub, setShowSub] = useState<boolean>(false);
+  const handleShowSub = () => {
+    setShowSub(!showSub);
+  }
+
   return (
     <div>
       <div className="py-2">
@@ -29,6 +35,10 @@ export const RankingTable: React.FC<RankingTableProps> = ({ freq, total }) => {
           <div className="">
             {total}   デッキ中
           </div>
+        </div>
+        <div className="w-full flex justify-end text-sm">
+          <Checkbox id="showSub" onCheckedChange={handleShowSub} />
+          <label htmlFor="showSub">サブを表示する</label>
         </div>
         <div className="w-full flex justify-end text-sm">
           <Checkbox id="showAce" onCheckedChange={handleShowAce} />
@@ -51,6 +61,16 @@ export const RankingTable: React.FC<RankingTableProps> = ({ freq, total }) => {
                 <TableCell className="mx-6 py-4 font-medium text-center">{Object.keys(freq).indexOf(deckType) + 1}</TableCell>
                 <TableCell className="mx-6 py-4">
                   <div className="font-bold">{deckType}</div>
+                  {showSub && (
+                    <ul className="ml-4">
+                      {Object.keys(freq[deckType].subFreq).map((sub) => (
+                        <li key={sub} className="border-l border-neutral-400 dark:border-white/10 pl-2">
+                          {sub}: {freq[deckType].subFreq[sub]} <small>({(freq[deckType].subFreq[sub] / freq[deckType].freq * 100).toFixed(0)}%)</small>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {showSub && showAce && <div className="mx-6 my-1 h-[1px] bg-neutral-400 dark:bg-white/10"></div>}
                   {showAce && (
                     <ul className="ml-4">
                       {Object.keys(freq[deckType].aceFreq).map((ace) => (

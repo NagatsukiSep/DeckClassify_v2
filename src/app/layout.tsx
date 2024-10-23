@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header/Header";
+import { DeckDataProvider } from "./context/DeckDataContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,8 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased m-8 md:m-12 lg:m-16`}
       >
-        <Header />
-        {children}
+        <DeckDataProvider>
+          <Header />
+          {children}
+        </DeckDataProvider>
       </body>
     </html>
   );

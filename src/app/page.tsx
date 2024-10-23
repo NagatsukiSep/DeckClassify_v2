@@ -1,26 +1,27 @@
 "use client";
 import React from 'react';
 import { useDeckCodeExtractor } from "@/hooks/useDeckCodeExtractor";
-import { useDeckClassifier } from "@/hooks/useDeckClassifier";
 import { DeckUploader } from "@/components/DeckUploader/DeckUploader";
 import { DeckGrid } from "@/components/DeckCard/DeckGrid";
-import { RankingTable } from '@/components/RankingTable';
+import { useDeckDataContext } from "@/app/context/DeckDataContext";
 
 const Home = () => {
-  const { handleFileChange, extractSelectedColumns, deckCodes } = useDeckCodeExtractor();
-  const { data, freq, total } = useDeckClassifier(deckCodes);
+  const { handleFileChange, extractSelectedColumns } = useDeckCodeExtractor();
+  const { data, setDeckCodes } = useDeckDataContext();
+
+  // デッキコードが抽出されたら、setDeckCodesを通じてコンテキストに渡す
+  const handleDeckUpload = (columns: string[]) => {
+    const extractedCodes = extractSelectedColumns(columns);
+    setDeckCodes(extractedCodes);  // デッキコードを更新
+  };
 
   return (
     <div>
       {data.length === 0 && (
-        <DeckUploader handleSubmit={extractSelectedColumns} handleFileChange={handleFileChange} />
+        <DeckUploader handleSubmit={handleDeckUpload} handleFileChange={handleFileChange} />
       )}
       {data.length > 0 && (
-        <div>
-          <DeckGrid data={data} />
-          <div className="h-[1px] bg-black w-full px-3" />
-          <RankingTable freq={freq} total={total} />
-        </div>
+        <DeckGrid data={data} />
       )}
     </div>
   );

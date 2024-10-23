@@ -14,7 +14,7 @@ export const DeckCard = (props: { deckCode: string, deckType: string, ace: strin
   };
 
   return (
-    <div className="w-full bg-[#C8F2FF] p-3 rounded-lg shadow-xl">
+    <div className="w-full bg-[#C8F2FF] p-3 rounded-lg shadow-xl flex flex-col justify-between h-full">
       <img
         className="w-full h-auto"
         src={Code2Image(props.deckCode)}
@@ -31,7 +31,7 @@ export const DeckCard = (props: { deckCode: string, deckType: string, ace: strin
           {props.deckType}
         </div>
       )}
-      <div className="text-center font-m-plus-1p text-xs underline">
+      <div className="text-center font-m-plus-1p text-xs underline mt-auto mb-0 h-4">
         <a href={`https://www.pokemon-card.com/deck/confirm.html/deckID/${props.deckCode}`} target="_blank" rel="noreferrer">
           {props.deckCode}
         </a>

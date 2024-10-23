@@ -13,10 +13,10 @@ export default function Header() {
               <Link href="/" className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                 ホーム
               </Link>
-              <Link href="/decks" className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+              <Link href="/ranking" className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                 ランキング
               </Link>
-              <Link href="/decks" className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+              <Link href="/howto" className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                 使い方
               </Link>
             </nav>
