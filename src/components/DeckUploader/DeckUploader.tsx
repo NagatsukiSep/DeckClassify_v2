@@ -39,7 +39,7 @@ export const DeckUploader: React.FC<FileUploaderProps> = ({ handleSubmit, handle
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files)
       setFile(selectedFiles[0])
-      handleFileChange && handleFileChange(e)
+      handleFileChange?.(e)
     }
   }, [])
 
