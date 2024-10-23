@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Decklassify",
-  description: "デッキリストを分類する",
+  description: "デッキコードが書かれたCSVファイルからデッキタイプごとに分類し、集計するツールです。",
 };
 
 export default function RootLayout({
