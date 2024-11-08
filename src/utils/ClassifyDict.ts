@@ -83,4 +83,7 @@ export const classifyDef: classifyDefType = {
   "ブリジュラスex": {
     sub: []
   },
+  "ガケガニ": {
+    sub: []
+  },
 }
