@@ -9,13 +9,13 @@ export const classifyDef: classifyDefType = {
     sub: ["オーガポン みどりのめんex", "スナノケガワex"]
   },
   "リザードンex": {
-    sub: ["ピジョットex", "ビーダル"]
+    sub: ["ピジョットex", "ビーダル", "ヨルノズク"]
   },
   "ドラパルトex": {
     sub: ["ネイティオ", "ピジョットex", "ヨノワール", "リザードンex", "キュワワー"]
   },
   "サーナイトex": {
-    sub: []
+    sub: ["ジュペッタex"]
   },
   "ルギアVSTAR": {
     sub: ["アーケオス"]
@@ -27,7 +27,7 @@ export const classifyDef: classifyDefType = {
     sub: []
   },
   "テツノイバラex": {
-    sub: []
+    sub: ["ドラパルトex"]
   },
   "オリジンパルキアVSTAR": {
     sub: ["ヨノワール", "ヨルノズク"]
@@ -78,7 +78,7 @@ export const classifyDef: classifyDefType = {
     sub: ["ピジョットex"]
   },
   "ピカチュウex": {
-    sub: ["レアコイル"]
+    sub: ["レアコイル", "ハピナスex"]
   },
   "ブリジュラスex": {
     sub: []
