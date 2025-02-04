@@ -1,5 +1,6 @@
-import React from 'react';
-import Modal from 'react-modal';
+import React from "react";
+import Modal from "react-modal";
+import Image from "next/image";
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -7,7 +8,11 @@ interface ImageModalProps {
   imageUrl: string;
 }
 
-const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, imageUrl }) => {
+const ImageModal: React.FC<ImageModalProps> = ({
+  isOpen,
+  onClose,
+  imageUrl,
+}) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -18,10 +23,20 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, imageUrl }) =>
       ariaHideApp={false}
     >
       <div className="relative">
-        <button onClick={onClose} className="absolute top-0 right-0 m-2 bg-white rounded-full w-8 h-8 flex items-center justify-center">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 m-2 bg-white rounded-full w-8 h-8 flex items-center justify-center"
+        >
           ✕
         </button>
-        <img src={imageUrl} alt="DeckImage" className="max-w-full max-h-full rounded-lg" />
+        <Image
+          src={imageUrl}
+          alt="DeckImage"
+          className="max-w-full max-h-full p-4"
+          width={1200}
+          height={600}
+          layout="intrinsic"
+        />
       </div>
     </Modal>
   );
