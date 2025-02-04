@@ -26,6 +26,9 @@ export async function Classify(code: string) {
     if (card === "ネオアッパーエネルギー") {
       classifiedData.ace = "ネオアッパーエネルギー";
     }
+    if (card === "リッチエネルギー") {
+      classifiedData.ace = "リッチエネルギー";
+    }
   }
 
   const possibleMain: string[] = [];
