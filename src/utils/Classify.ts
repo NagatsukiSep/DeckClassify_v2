@@ -5,7 +5,7 @@ import { ClassifiedData } from "@/types/ClassifyData";
 export async function Classify(code: string) {
   const classifiedData: ClassifiedData = {
     main: "その他",
-    sub: undefined,
+    sub: "サブ無し",
     ace: "無し",
     id: 0,
     code: code
