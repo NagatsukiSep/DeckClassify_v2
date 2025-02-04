@@ -5,7 +5,7 @@ export function DeckTypeName(main: string, sub?: string) {
   else if (main === "キュワワー") {
     return `${sub} ロスト`;
   }
-  else if (sub === undefined) {
+  else if (sub === "サブ無し") {
     return main;
   }
   else {
